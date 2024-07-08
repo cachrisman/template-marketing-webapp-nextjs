@@ -21,6 +21,7 @@ export function customFetcher<TData, TVariables extends { preview?: boolean | nu
   variables?: TVariables,
   options?: RequestInit['headers'],
 ) {
+  if (Array.isArray(variables.slug)) variables.slug = variables.slug.join('/');
   return async (): Promise<TData> => {
     const res = await fetch(fetchConfig.endpoint as string, {
       method: 'POST',

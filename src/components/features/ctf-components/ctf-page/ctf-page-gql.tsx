@@ -15,7 +15,8 @@ interface Props {
 }
 
 const CtfPageGgl = ({ slug: slugFromProps }: Props) => {
-  const slug = !slugFromProps || slugFromProps === '/' ? 'home' : slugFromProps;
+  const _slug = !slugFromProps || slugFromProps === '/' ? 'home' : slugFromProps;
+  const slug = Array.isArray(_slug) ? _slug.join('/') : _slug;
 
   const { previewActive, locale } = useContentfulContext();
 
